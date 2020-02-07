@@ -21,7 +21,7 @@ public class TwoWheelDrive extends Drive {
     }
 
     @Override
-    public void drive(double v, double r) {
+    public void drive(double v, double h, double r) {
         double leftPower    = Range.clip(v + r, -1.0, 1.0) ;
         double rightPower   = Range.clip(v - r, -1.0, 1.0) ;
 
@@ -29,13 +29,8 @@ public class TwoWheelDrive extends Drive {
         right.setVelocity(MAX_VELOCITY * rightPower);
     }
 
-    @Override
-    public void drive(double v, double h, double r) {
-        drive(v, r);
-    }
-
-    public void GTADrive(Gamepad gamepad) {
-        drive(-gamepad.left_stick_y, gamepad.right_stick_x);
+    public void StandardDrive(Gamepad gamepad) {
+        drive(-gamepad.left_stick_y, 0, gamepad.right_stick_x);
     }
 
     public void TankDrive(Gamepad gamepad) {
@@ -75,10 +70,5 @@ public class TwoWheelDrive extends Drive {
         while(opMode.opModeIsActive() && robot.isBusy() && timer.seconds() < timeoutSeconds) {}
         robot.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         stop();
-    }
-
-    @Override
-    public void stop() {
-        robot.stop();
     }
 }

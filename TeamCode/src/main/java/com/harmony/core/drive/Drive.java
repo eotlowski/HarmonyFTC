@@ -30,7 +30,6 @@ public abstract class Drive {
                 (WHEEL_DIAMETER_INCHES * Math.PI);
     }
 
-    public abstract void drive(double v, double r);
     public abstract void drive(double v, double h, double r);
 
     public abstract void moveByInches(double power, double leftInches, double rightInches, double timeoutSeconds);
@@ -38,6 +37,6 @@ public abstract class Drive {
 
     public abstract void encoderDrive(double power, double leftTicks, double rightTicks, double timeoutSeconds);
 
-    public abstract void stop();
+    public void stop() {robot.stop();}
 
 }
